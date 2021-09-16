@@ -58,7 +58,7 @@ instance hasMediaTypeHTML :: HasMediaType HTML where
 instance mimeRenderHTMLEncodeHTML :: EncodeHTML a => MimeRender a HTML String where
   mimeRender _ = render <<< encodeHTML
 else instance mimeRenderHTML :: MimeRender (Free (MarkupM e) Unit) HTML String where
-  mimeRender p = render
+  mimeRender _ = render
 
 instance allMimeRenderHTML :: EncodeHTML a => AllMimeRender a HTML String where
   allMimeRender p x = pure (Tuple (getMediaType p) (mimeRender p x))

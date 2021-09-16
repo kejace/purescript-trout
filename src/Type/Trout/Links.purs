@@ -1,5 +1,5 @@
 module Type.Trout.Links
-       ( Link
+       ( Link(..)
        , class HasLinks
        , toLinks
        , linksTo
@@ -54,6 +54,7 @@ linkToURI (Link segments) =
           Left $ PathAbsolute Nothing
 
 -- | A routing type `t` which has links of type `links`.
+class HasLinks :: forall k. k -> Type -> Constraint
 class HasLinks t links | t -> links where
   toLinks :: Proxy t -> Link -> links
 
